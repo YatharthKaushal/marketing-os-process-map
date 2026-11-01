@@ -1,5 +1,7 @@
 # Marketing OS · Process map
 
+Live: https://yatharthkaushal.github.io/marketing-os-process-map/
+
 Pannable, zoomable map of the **planned** Marketing OS: the brand journey and the agency workflow, from winning a client to the next cycle. 13 stages (0 to 12) run left to right, and the people and systems run top to bottom in 11 lanes. Click any node or arrow for its role, purpose, who does it, the tools that help, limits and how AI helps. The Glossary button explains abbreviations.
 
 The **Document** page (`doc.html`) holds the Simple SRS and the HLD, MLD, LLD doc.
