@@ -93,7 +93,7 @@
         (sec === 'auto' ? ' · ' + ch('add') + ' add · ' + ch('modify') + ' modify · ' + ch('remove') + ' remove' : '') + '</small>');
       banners.push(ban); nodesEl.appendChild(ban);
       P.stages.forEach(function (s, i) {
-        nodesEl.appendChild(div('stage-h', 'left:' + (stageX[i] + 10) + 'px;top:' + (top + BANNER_H + 16) + 'px', '<i>' + (i + SB) + '</i>' + esc(s.label)));
+        nodesEl.appendChild(div('stage-h', 'left:' + (stageX[i] + 10) + 'px;top:' + (top + BANNER_H + 16) + 'px', '<i>' + (s.mark || i + SB) + '</i>' + esc(s.label)));
       });
       nodesEl.appendChild(div('timearrow', 'left:' + GUTTER + 'px;top:' + (top + BANNER_H + 66) + 'px;width:' + (TOTAL_W - GUTTER - PAD) + 'px'));
       nodesEl.appendChild(div('timelbl', 'left:' + (GUTTER + 2) + 'px;top:' + (top + BANNER_H + 48) + 'px', 'time'));
@@ -371,7 +371,7 @@
       '<span class="b">' + esc(TYPE_NAME[n.type]) + '</span>' + (n.assumed ? '<span class="b bad">Assumed</span>' : '') + '</div>';
     h += '<h2>' + esc(n.label) + '</h2>' + roleBlock(n) + solvesBlock(n) + guideBlock(n);
     if (n.assumed) h += '<div class="box assumed">' + esc(L.assumed) + '</div>';
-    h += '<dl class="kv"><dt>Who</dt><dd>' + esc(n.actor || '') + '</dd><dt>Stage</dt><dd>' + (n.stage + SB) + ' · ' + esc(P.stages[n.stage].label) + '</dd><dt>Lane</dt><dd>' + esc(P.lanes[n.lane]) + '</dd>' +
+    h += '<dl class="kv"><dt>Who</dt><dd>' + esc(n.actor || '') + '</dd><dt>Stage</dt><dd>' + (P.stages[n.stage].mark || n.stage + SB) + ' · ' + esc(P.stages[n.stage].label) + '</dd><dt>Lane</dt><dd>' + esc(P.lanes[n.lane]) + '</dd>' +
       (n.evidence ? '<dt>' + esc(L.evidence || 'Evidence') + '</dt><dd>' + esc(n.evidence) + '</dd>' : '') + '</dl>';
     if (n.touch) {
       var manual = n.section === 'manual';
@@ -463,7 +463,7 @@
     else if (st != null) gotoStage(+st);
   });
   var stagesEl = $('#stages');
-  P.stages.forEach(function (s, i) { var b = document.createElement('button'); b.textContent = i + SB; b.title = s.label; b.setAttribute('data-stage', i); stagesEl.appendChild(b); });
+  P.stages.forEach(function (s, i) { var b = document.createElement('button'); b.textContent = s.mark || i + SB; b.title = s.label; b.setAttribute('data-stage', i); stagesEl.appendChild(b); });
 
   M_STATS();
 

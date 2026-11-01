@@ -90,6 +90,7 @@
       'Site speed: LCP under 2.5 s, INP under 200 ms, CLS under 0.1',
       'Mobile: pages easy to use on a phone',
       'SEO: titles, meta tags, sitemap, robots, broken links, schema, duplicates, indexing',
+      'GEO and AEO: do AI tools and search answers name the brand, and which rivals and sources do they name?',
       'Conversion: product page content, trust signals, delivery estimate, COD, checkout steps, drop-off',
       'Tracking: tags firing, key events, pixel events, CAPI, duplicates, consent, UTM discipline',
       'Revenue match: ad platform revenue against real store orders',
@@ -543,6 +544,63 @@
   g('f_cmd', { how: ['Ask by prompt on the website or WhatsApp', 'Get answers, reports and plans', 'Build drafts, such as a campaign', 'Confirm before anything goes out'] });
   g('f_test', { how: ['Write a hypothesis', 'Set up the test', 'Read the result', 'Save the winner'] });
   g('f_work', { how: ['Save each learning', 'Search before planning', 'Feed learnings into strategy'] });
+
+  /* ---------------- Customer journeys ---------------- */
+  g('c_pick', {
+    need: ['Signed strategy and ICP', 'Offer and margin limits', 'Channels with consent in place'],
+    holds: ['New customer: ad, reel, creator or search to first order', 'Abandoned cart: left cart to finished order', 'Left at checkout: closed checkout to finished order', 'Welcome: first order to second order', 'Order updates: order placed to delivered', 'Issue resolution: complaint to happy customer', 'Review and customer content: delivered to review or photo', 'Repeat order: product due to run out', 'Win-back: no order for a set time', 'Campaign launch: first ad or message to campaign goal'],
+    how: ['Pick the closest template and change the audience, wording and timing', 'Or start blank and add each step', 'Or describe it to AI and edit the draft'],
+    tools: ['Journey builder', 'Command Center']
+  });
+  g('c_aud', { need: ['Start event: ad click, cart left, order placed, complaint or a set date', 'Segment and exclusions', 'Consent status per channel'], check: ['Who should not enter: recent buyers, open complaints, opted-out customers', 'How many people qualify today', 'Can a customer enter twice?'], tools: ['Journey builder', 'Segments', 'CRM and customer database'] });
+  g('c_touch', { holds: ['Touchpoint: ad, reel, page, WhatsApp, email, SMS, RCS or call', 'Wait: minutes, hours or days', 'Decision: bought, clicked, replied or consented', 'End: bought, opted out or finished'], check: ['Each touchpoint has approved content', 'Waits suit the channel and quiet hours', 'WhatsApp uses an approved template outside 24 hours', 'Ad audiences match the journey step'], tools: ['Journey builder', 'Campaigns', 'Messaging', 'Ads manager'] });
+  g('c_act', {
+    holds: ['Sees an ad, no click: shows a different ad later, within a limit', 'Clicks, leaves product page: retargeting ad, plus a reminder if known', 'Adds to cart, leaves: reminder after a short wait', 'Leaves on checkout: WhatsApp, then email, then an offer if margin allows', 'Failed payment: new payment link and help', 'Asks a question: AI answers, staff if needed, next step holds', 'Complains: ticket opens, marketing pauses', 'Buys: this journey ends, order updates start', 'Opts out: messages stop at once', 'Does nothing: journey ends, later win-back'],
+    how: ['Add one path for every action', 'Set a time limit on each wait', 'Check that buying always ends the journey'],
+    tools: ['Journey builder', 'Automation builder']
+  });
+  g('c_warn', { check: ['Paths with no ending', 'Steps with no consent check', 'Messages with empty fields', 'Offers below the margin limit', 'Too many messages in one day'], tools: ['Journey builder'], out: ['A list of problems to fix before approval'] });
+  g('c_ok', { check: ['Run a test customer down each path', 'Links open the right page', 'Saved carts load', 'The journey stops when a test order is placed', 'Opt-out works'], out: ['An approved journey version'], tools: ['Journey builder', 'Approvals'] });
+  g('c_live', { check: ['Number entering in the first hour', 'Delivery on each channel', 'Errors in the run history'], tools: ['Campaigns', 'Journey builder'] });
+  g('c_see', { data: ['Ad platforms: impressions and reach', 'Social: views and engagement', 'Search Console: search appearances'], tools: ['Ads manager', 'Social publisher', 'SEO tool'] });
+  g('c_click', { data: ['UTM tags and ad click IDs tie the visit to the ad, ad set and campaign'], check: ['Link tags are on every ad', 'The landing page loads fast on a phone'], tools: ['Attribution', 'Behaviour tracking'] });
+  g('c_ret', { need: ['Pixel audience of recent visitors', 'A set limit on how often the ad shows'], tools: ['Ads manager', 'Meta Ads Manager', 'Google Ads'] });
+  g('c_cart', { data: ['Store events: product viewed, cart, checkout started', 'Web tracking: each step of the visit'], out: ['A card on the lead kanban board'], tools: ['Behaviour tracking', 'Lead tracker'] });
+  g('c_left', { data: ['Checkout started with no order after the wait'], check: ['Did they buy another way?', 'Do we have a phone or email?', 'Have they consented?'], tools: ['Commerce tracking', 'Automation builder'] });
+  g('c_rem', { how: ['Wait 30 minutes, send a WhatsApp reminder with the cart link', 'Wait 4 hours, send an email', 'Wait 24 hours, send an offer if margin allows', 'Stop as soon as they buy'], check: ['Consent on each channel', 'Quiet hours', 'Offer stays above break-even'], tools: ['Journey builder', 'Messaging', 'Offers'] });
+  g('c_buy', { data: ['Store order matched by phone or email'], tools: ['Commerce tracking', 'CRM and customer database'] });
+  g('c_order', { how: ['Send order confirmed, shipped, out for delivery and delivered', 'Start the welcome journey for first-time buyers', 'Ask for a review after delivery'], tools: ['Lifecycle flows', 'Reviews'] });
+  g('c_win', { how: ['Tag the customer', 'Add them to the win-back segment'], tools: ['Segments', 'Lifecycle flows'] });
+  g('c_issue', { how: ['AI reads the problem and looks up the order', 'AI solves simple cases, such as tracking a parcel', 'Other cases get a ticket, owner and time limit', 'Marketing pauses until the ticket closes', 'Send CSAT, then a review ask if the customer is happy'], tools: ['Support tickets', 'Order help', 'AI chat bot', 'Surveys'] });
+  g('c_rep', { holds: ['People at each step', 'Where people leave', 'Sales and real revenue', 'Cost per sale'], how: ['Fix the step with the biggest drop', 'Save good journeys as templates, without customer data'], tools: ['Dashboards and reports', 'What worked library'] });
+  g('f_jb', { how: ['Pick a template or start blank', 'Drag in touchpoints, waits and decisions', 'Add a next step for each customer action', 'Test, then send for approval'] });
+  g('f_jrep', { how: ['Read people at each step', 'Find the biggest drop', 'Compare journeys'] });
+  g('s_jour', { holds: ['Journey steps and versions', 'Approved by and date', 'Saved templates, with no customer data'] });
+
+  /* ---------------- Daily brand work ---------------- */
+  g('y_log', { how: ['Log in', 'See My workspaces: only your assigned clients', 'Click a client'], out: ['That client\'s task board'], tools: ['My workspaces', 'Access control'] });
+  g('y_board', { holds: ['Columns: To do, In progress, In review, Waiting on client, Done', 'Card: task, owner, due date, client, files, comments'], how: ['See your own tasks first', 'Open a task and do the work', 'Move the card along the board', 'Reviewer checks cards in In review'], check: ['Overdue cards', 'Cards waiting on the client', 'Too many cards for one person'], tools: ['Tasks and projects', 'Team'] });
+  g('y_sup', { need: ['Help center articles', 'Order, delivery and return data', 'Rules for moving hard cases up'], how: ['AI answers common questions', 'Staff take over with the full history', 'Set an owner, priority and time limit on tickets', 'Send CSAT after closing'], check: ['First reply time', 'Time to solve', 'Open tickets', 'Share solved by AI', 'CSAT', 'Most common problems'], tools: ['One inbox', 'Support tickets', 'Order help', 'Help center', 'Surveys'] });
+  g('y_soc', { how: ['Manage: handles, profiles, bios, links, access, posts and replies', 'Analyse: best posts, formats, times and topics, compared with rivals', 'Track: followers, reach, engagement, saves, shares, link clicks, leads, sales and account health'], data: ['Instagram, Facebook, YouTube and LinkedIn insights', 'Store orders from social links'], tools: ['Social accounts', 'Social publisher', 'Social analytics', 'Competitor tracker'] });
+  g('y_com', { how: ['Manage: products, prices, stock alerts, discounts, pop-ups, orders, COD and returns', 'Analyse: best sellers, weak products, pricing gaps, why carts are left', 'Track: orders, real revenue, AOV, conversion rate, left and recovered carts, repeat rate, returns, stock'], check: ['Client approves store changes', 'Offers stay above break-even'], data: ['Store orders and products', 'Marketplace reports'], tools: ['Commerce manager', 'Offers', 'COD tools', 'Commerce tracking'] });
+  g('y_aud', {
+    check: ['Performance: page speed on phone and desktop, large images, apps that slow the store', 'Mobile: pages easy to use on a phone', 'SEO: titles, descriptions, indexing, sitemaps, schema, broken links, product and collection pages', 'GEO: do AI tools name the brand, and which rivals do they name?', 'AEO: do search answers use the brand, and which sources are cited?', 'AI readability: can AI read the site easily?', 'Conversion: product pages, cart, checkout, trust, offers'],
+    out: ['A score for each area and one overall grade', 'Each problem, why it matters, who fixes it and how long it takes', 'A report to download and share'],
+    tools: ['Store audit', 'AI search tracker', 'SEO tool']
+  });
+  g('y_fix', { how: ['Rank fixes by value', 'Make a task for each fix', 'Ask the client before anything changes the store', 'Run the audit again each month and compare scores'], tools: ['Store audit', 'Tasks and projects', 'Approvals'] });
+  g('y_beh', { holds: ['Traffic and where visitors came from', 'Each visit, step by step', 'Heatmaps of clicks and scrolling', 'Products viewed and added to cart', 'Funnel and checkout drop-off', 'Repeat visits and cohorts'], need: ['Cookie consent on the store', 'Tracking tag on every page'], how: ['Find where people leave', 'Fix pages people ignore', 'Update lead scores and segments', 'Start journeys from what customers do'], tools: ['Behaviour tracking', 'Testing'] });
+  g('y_sen', { data: ['Comments, DMs and mentions', 'Reviews', 'Tickets and surveys', 'Call summaries'], how: ['AI marks each item positive, neutral or negative', 'AI adds the topic and product', 'Dashboards show the mood over time', 'Staff reply, open a ticket or start the crisis plan'], check: ['Sudden rise in negative mentions', 'Products with falling mood', 'Most common complaints'], tools: ['Sentiment tracking', 'One inbox', 'Dashboards and reports'] });
+  g('y_ugc', { how: ['Find tagged posts, mentions and reviews with photos', 'Pick the best ones', 'Ask permission by DM or link', 'Save with usage rights', 'Use in posts, ads and product pages, with credit', 'Reward the customer if the brand wants to'], check: ['Permission on record', 'Where it may be used', 'Which pieces drove sales'], tools: ['Reviews', 'Customer content library', 'Loyalty and referrals'] });
+  g('y_rev', { out: ['Support, social, commerce, behaviour and sentiment numbers in reports', 'Data for Command Center plans'], tools: ['Dashboards and reports', 'Command Center'] });
+  g('f_my', { how: ['See your assigned clients', 'Click one to open its board'] });
+  g('f_help', { how: ['Look up an order for a customer', 'Keep answers up to date', 'Let AI use the same answers'] });
+  g('f_socan', { how: ['Read best posts and times', 'Compare accounts and rivals', 'Track growth and sales from social'] });
+  g('f_comm', { how: ['See products, prices and stock', 'See orders and returns', 'Plan changes for client approval'] });
+  g('f_sa', { how: ['Run the audit', 'Read scores and grade', 'Share the report', 'Turn fixes into tasks', 'Compare with the last audit'] });
+  g('f_bs', { how: ['Read visits and heatmaps', 'Find drop-off', 'Read mood by product', 'Set alerts for sudden drops'] });
+  g('s_ugc', { holds: ['Photo, video or post', 'Customer and source', 'Permission and date', 'Where it may be used'] });
+  g('l_board', { holds: ['Columns: New, Contacted, Interested, Qualified, Cart or offer, Won, Lost', 'Card: name, source, score, owner, last contact'], how: ['Filter by score, source or owner', 'Call the hottest leads', 'Save a reason when a lead is lost'], tools: ['Lead tracker', 'Automation builder'] });
 
   (window.PROCESS.nodes || []).forEach(function (n) { if (G[n.id]) n.guide = G[n.id]; });
   window.__guideIds = Object.keys(G);
